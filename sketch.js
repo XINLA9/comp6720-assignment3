@@ -22,3 +22,20 @@ function keyTyped() {
     saveCanvas("thumbnail.png");
   }
 }
+
+class bloomer {
+  constructor(x, y , r){
+    this.x = mouseX;
+    this.y = mouseY;
+    this.r = 0;
+    this.rMax = random(100,200);
+    this.isBloomed = false;
+    
+    let colors = [color("red"),color("blue"),color("purple"),color("green"),color("yellow"), color("orange")];
+    this.color = colors[int(random(colors.length))];
+    this.color.setAlpha(20);
+  }
+  unpdate(params) {
+    
+  }
+}
