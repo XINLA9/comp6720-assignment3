@@ -1,8 +1,8 @@
 let osc;
 let env;
-var bloomers = [];
+var ripples = [];
 
-// 定义标准音符及其频率
+// Define standard notes and their frequencies
 const notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"];
 const noteFrequencies = {
   "C4": 261.63,
@@ -41,21 +41,21 @@ function draw() {
   background(255);
 
   // 绘制所有 bloomers
-  for (let i = bloomers.length - 1; i >= 0; i--) {
-    bloomers[i].update();
-    bloomers[i].display();
+  for (let i = ripples.length - 1; i >= 0; i--) {
+    ripples[i].update();
+    ripples[i].display();
 
     // 如果 bloomer 已经完全绽放并消失，则从数组中删除
-    if (bloomers[i].isBloomed) {
-      bloomers.splice(i, 1);
+    if (ripples[i].isBloomed) {
+      ripples.splice(i, 1);
     }
   }
 }
 
 // 鼠标点击时添加新的 bloomer，并根据点击位置播放不同音调
 function mousePressed() {
-  let newBloomer = new Bloomer(mouseX, mouseY);
-  bloomers.push(newBloomer);
+  let newBloomer = new Rippple(mouseX, mouseY);
+  ripples.push(newBloomer);
   
   // 根据鼠标的 X 位置映射到 notes 数组中的一个音符
   let noteIndex = int(map(mouseX, 0, width, 0, notes.length));
@@ -82,8 +82,8 @@ function keyTyped() {
 }
 
 
-// Bloomer 类定义
-class Bloomer {
+// Ripple 类定义
+class Rippple {
   constructor(x, y) {
     this.x = x;
     this.y = y;
