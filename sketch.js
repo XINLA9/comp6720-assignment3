@@ -82,7 +82,7 @@ function keyTyped() {
 }
 
 
-// Bloomer 类定义
+// Ripple 类定义
 class Rippple {
   constructor(x, y) {
     this.x = x;
