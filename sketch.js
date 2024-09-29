@@ -54,7 +54,7 @@ function draw() {
 
 // 鼠标点击时添加新的 bloomer，并根据点击位置播放不同音调
 function mousePressed() {
-  let newBloomer = new Rippple(mouseX, mouseY);
+  let newBloomer = new bloomer(mouseX, mouseY);
   ripples.push(newBloomer);
   
   // 根据鼠标的 X 位置映射到 notes 数组中的一个音符
@@ -81,9 +81,16 @@ function keyTyped() {
   }
 }
 
+class ripples{
+  constructor(x,y){
+    this.x = x;
+    this.y = y;
+    
+  }
+}
 
 // Ripple 类定义
-class Rippple {
+class bloomer {
   constructor(x, y) {
     this.x = x;
     this.y = y;
