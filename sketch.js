@@ -1,15 +1,18 @@
 let osc;
 let env;
 let ripples = [];
-let shapes = ["circle", "square", "triangle"];
+// let shapes = ["circle", "square", "triangle"];
+let shapes = ["circle", "square"];
 let notes = [];
 let bgColor;
+let count_whole = 0;
+let playable_whole = true;
 
 // Define sound properties for each shape type
 const shapeSoundProperties = {
   "circle": { waveType: 'sine' },
-  "square": { waveType: 'square' },
-  "triangle": { waveType: 'triangle' }
+  "square": { waveType: 'triangle' },
+  "triangle": { waveType:  'cos'}
 };
 const notesType = ["C4", "D4", "E4", "F4", "G4", "A4", "B4"];
 const noteFrequencies = {
@@ -62,7 +65,7 @@ function draw() {
         ripples[i].update();
         ripples[i].display();
 
-        // If a ripple hits a note, the note disappears and plays a sound
+        // If a ripple hits a note, the note changes and plays a sound
         for (let j = notes.length - 1; j >= 0; j--) {
             if (ripples[i].hits(notes[j]) && !ripples[i].collisionRecord[j]) {
                 // Push the note away based on ripple's position
@@ -71,6 +74,7 @@ function draw() {
                 notes[j].vy = sin(angle) * 3; // Adjust push strength
                 notes[j].changeShape();
                 playNote(notes[j]); // Play the note sound
+                ripples[i].collisionRecord[j] = true;
             }
         }
 
