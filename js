@@ -26,8 +26,7 @@ const noteFrequencies = {
 };
 
 function preload() {
-  ambientSound = loadSound("/assets/underwater_ambience.wav");
-  dropSound = loadSound("/assets/water_drop.wav");
+  ambientSound = loadSound("/assets/underwater_ambience");
 }
 
 function setup() {
@@ -36,12 +35,10 @@ function setup() {
 
   // set preset background color
   presetBgColors = [
-    color(200),
-    color(210),
-    color(220)
+    color(220),
+    color(230),
+    color(240)
   ];
-
-  ambientSound.loop();
 
   // Initialize oscillator and envelope
   osc = new p5.Oscillator('sine');
@@ -52,6 +49,7 @@ function setup() {
   env.setADSR(0.01, 0.2, 0.5, 0.1);
   env.setRange(1, 0);
 
+  // ambientSound.loop();
 
   // ambientSound.play();
 
@@ -170,7 +168,6 @@ function mousePressed() {
   if (ripples.length < 3) {
     let newRipple = new Ripple(mouseX, mouseY);
     ripples.push(newRipple);
-    dropSound.play();
   }
 }
 
