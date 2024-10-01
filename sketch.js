@@ -228,7 +228,7 @@ class Note {
     this.x = random(windowWidth / 5, (4 * windowWidth) / 5);
     this.y = random(windowHeight / 5, (4 * windowHeight) / 5);
 
-    let rAdjust = 20 * max(width, height) / 800;
+    let rAdjust = 20 * min(width, height) / 800;
 
     this.r = random(rAdjust, rAdjust * 2);
     this.color = color(random(255), random(255), random(255), 180);
