@@ -2,7 +2,8 @@ let osc;
 let env;
 let ripples = [];
 
-let shapes = ["circle", "square", "triangle", "cross"];
+// let shapes = ["circle", "square", "triangle", "cross"];
+let shapes = ["circle", "square"];
 
 // Define sound properties for each shape type
 const shapeSoundProperties = {
@@ -221,7 +222,7 @@ class Note {
     this.x = random(windowWidth / 5, (4 * windowWidth) / 5);
     this.y = random(windowHeight / 5, (4 * windowHeight) / 5);
 
-    let rAdjust = 20 * min(width, height) / 800;
+    let rAdjust = 20 * max(width, height) / 800;
 
     this.r = random(rAdjust, rAdjust * 2);
     this.color = color(random(255), random(255), random(255), 180);
@@ -342,10 +343,14 @@ class Note {
   changeShape() {
     let newShape;
     do {
-      newShape = random(shapes);
-    } while (newShape === this.shape); // Ensure the new shape is different
+        newShape = random(shapes); 
+    } while (newShape === this.shape); 
 
-    this.shape = newShape; // Change to the new shape
+    this.shape = newShape; 
+    this.color = color(random(255), random(255), random(255), 180);
+    let rAdjust = 20 * min(width, height) / 800;
+    this.r = random(rAdjust, rAdjust * 2);
+
   }
 
   // Check if hit by a ripple
@@ -372,8 +377,11 @@ class Note {
         triangle(-this.r, this.r, 0, -this.r, this.r, this.r);
         break;
       case "cross":
-        line(-this.r, 0, this.r, 0);
-        line(0, -this.r, 0, this.r);
+        stroke(this.color); 
+        strokeWeight(this.r/2); 
+        rotate(PI / 4); 
+        line(-this.r, 0, this.r, 0); 
+        line(0, -this.r, 0, this.r); 
         break;
     }
     pop();
